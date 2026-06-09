@@ -1,46 +1,276 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Do Campo à Mesa Sem Desperdício</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- ESTILOS GERAIS E CORES (PALETA SUSTENTÁVEL) --- */
+        /* --- ESTILIZAÇÃO (CSS) --- */
         :root {
-            --verde-escuro: #2C5E3B;
-            --verde-claro: #A3C9A8;
-            --verde-folha: #4CAF50;
-            --terracota: #D97443;
-            --bege-claro: #F9F6F0;
-            --texto-escuro: #2B2D42;
-            --branco: #FFFFFF;
+            --verde-escuro: #2d6a4f;
+            --verde-claro: #52b788;
+            --bege-claro: #f4f9f4;
+            --texto: #1b4332;
+            --branco: #ffffff;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
             background-color: var(--bege-claro);
-            color: var(--texto-escuro);
+            color: var(--texto);
             line-height: 1.6;
         }
 
-        /* --- HERO HEADER (TOPO DO SITE) --- */
         header {
-            background: linear-gradient(rgba(44, 94, 59, 0.85), rgba(44, 94, 59, 0.95)), 
-                        url('https://images.unsplash.com/photo-1595855759920-86582396756a?auto=format&fit=crop&q=80&w=1200') no-repeat center/cover;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             color: var(--branco);
-            padding: 100px 20px;
             text-align: center;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+            padding: 100px 20px;
         }
 
         header h1 {
-            font-size: 2.8rem;
-            margin
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+        }
+
+        nav {
+            background-color: var(--verde-escuro);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            color: var(--branco);
+            padding: 15px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--verde-claro);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background-color: var(--branco);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--verde-escuro);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--verde-claro);
+            padding-bottom: 5px;
+        }
+
+        .grid-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: var(--bege-claro);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 5px solid var(--verde-claro);
+        }
+
+        /* --- ESTILO DO QUIZ INTERATIVO --- */
+        .quiz-container {
+            background-color: #e8f5e9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .opcao-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--branco);
+            color: var(--texto);
+            border: 2px solid var(--verde-claro);
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: left;
+            transition: 0.2s;
+        }
+
+        .opcao-btn:hover {
+            background-color: var(--verde-claro);
+            color: var(--branco);
+        }
+
+        #resultado-quiz {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* --- DICAS INTERATIVAS --- */
+        .dica-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .btn-interativo {
+            background-color: var(--verde-escuro);
+            color: var(--branco);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-interativo:hover {
+            background-color: var(--verde-claro);
+        }
+
+        footer {
+            background-color: var(--verde-escuro);
+            color: var(--branco);
+            text-align: center;
+            padding: 20px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Do Campo à Mesa</h1>
+        <p>Conscientização e Ação contra o Desperdício de Alimentos</p>
+    </header>
+
+    <nav>
+        <a href="#sobre">O Problema</a>
+        <a href="#jornada">A Jornada</a>
+        <a href="#interativo">Quiz & Dicas</a>
+    </nav>
+
+    <div class="container">
+
+        <section id="sobre">
+            <h2>O Impacto do Desperdício</h2>
+            <p>Bilhões de toneladas de alimentos são perdidas ou desperdiçadas anualmente no mundo. Isso acontece desde a colheita no campo até o descarte em nossas casas. Combater esse problema ajuda o planeta e a economia.</p>
+            
+            <div class="grid-info">
+                <div class="card">
+                    <h3>No Campo 🚜</h3>
+                    <p>Perdas por problemas no transporte, falta de infraestrutura e padrões estéticos rigorosos do mercado.</p>
+                </div>
+                <div class="card">
+                    <h3>Na Mesa 🍽️</h3>
+                    <p>Desperdício por compras excessivas, armazenamento inadequado e falta de aproveitamento integral dos alimentos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="jornada">
+            <h2>A Jornada do Alimento Sem Desperdício</h2>
+            <p>Veja como fazer a diferença em cada etapa:</p>
+            <br>
+            <ul>
+                <li><strong>1. Planejamento:</strong> Faça uma lista de compras antes de sair de casa.</li>
+                <li><strong>2. Consumo Consciente:</strong> Compre frutas e vegetais "feios", mas perfeitamente saudáveis.</li>
+                <li><strong>3. Armazenamento:</strong> Organize a geladeira deixando os itens mais antigos na frente.</li>
+                <li><strong>4. Aproveitamento Integral:</strong> Use cascas, talos e sementes em receitas nutritivas.</li>
+            </ul>
+        </section>
+
+        <section id="interativo">
+            <h2>Testes Interativos</h2>
+            
+            <h3>💡 Dica do Dia</h3>
+            <p>Clique abaixo para receber uma dica rápida de economia:</p>
+            <button class="btn-interativo" onclick="mostrarDica()">Gerar Dica</button>
+            <div id="dica-exibida" class="dica-box"></div>
+
+            <br><br>
+            <hr>
+            <br>
+
+            <h3>🧠 Quiz: Você sabe reaproveitar?</h3>
+            <div class="quiz-container">
+                <p id="pergunta-quiz">O que você deve fazer com os talos de brócolis e couve?</p>
+                <button class="opcao-btn" onclick="verificarResposta(false)">A) Jogar diretamente no lixo orgânico.</button>
+                <button class="opcao-btn" onclick="verificarResposta(true)">B) Picar e usar em sopas, refogados ou arroz.</button>
+                <button class="opcao-btn" onclick="verificarResposta(false)">C) Deixar na geladeira até estragar.</button>
+                
+                <div id="resultado-quiz"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - Projeto Do Campo à Mesa Sem Desperdício. Criado para conscientização social.</p>
+    </footer>
+
+    <script>
+        // --- LÓGICA INTERATIVA (JAVASCRIPT) ---
+
+        // Banco de dados de dicas
+        const dicas = [
+            "Folhas de cenoura viram um ótimo pesto! Não jogue fora.",
+            "Congele frutas que estão ficando muito maduras para usar em vitaminas depois.",
+            "Para as bananas durarem mais, envolva o topo do cacho em plástico filme.",
+            "Faça um caldo caseiro fervendo talos e cascas de vegetais guardados no congelador."
+        ];
+
+        function mostrarDica() {
+            const dicaBox = document.getElementById('dica-exibida');
+            // Sorteia uma dica aleatória
+            const dicaAleatoria = dicas[Math.floor(Math.random() * dicas.length)];
+            
+            dicaBox.innerText = dicaAleatoria;
+            dicaBox.style.display = 'block';
+        }
+
+        function verificarResposta(eCorreto) {
+            const resultado = document.getElementById('resultado-quiz');
+            if(eCorreto) {
+                resultado.innerHTML = "🎉 Correto! Os talos são ricos em fibras e dão muito sabor às receitas.";
+                resultado.style.color = "#2d6a4f";
+            } else {
+                resultado.innerHTML = "❌ Tente novamente! Lembre-se do reaproveitamento integral.";
+                resultado.style.color = "#b7094c";
+            }
+        }
+    </script>
+</body>
+</html>
